@@ -2,7 +2,3 @@ target/
 .classpath
 .project
 .settings/
-
-.vscode/
-
-node_modules/
