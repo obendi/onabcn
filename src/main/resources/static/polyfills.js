@@ -5473,7 +5473,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/o-bendicho/dev/onabcn/workspace/onabcn/src/app/src/polyfills.ts */"./src/polyfills.ts");
+module.exports = __webpack_require__(/*! /home/oscar/dev/worksapce/onabcn/src/app/src/polyfills.ts */"./src/polyfills.ts");
 
 
 /***/ })

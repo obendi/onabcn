@@ -58,7 +58,7 @@ export class ForecastChartComponent implements OnInit {
           let _primarySwell:Array<any> = [];
           let _secondarySwell:Array<any> = [];
 
-          for (let index=0; index<12; index++) {
+          for (let index=0; index<data.length; index++) {
             _lineChartLabels.push(this.datePipe.transform(data[index].date, 'EEEE dd/MM/yy - HH:mm'));
             _height.push(data[index].height);
             _windSwell.push(data[index].windSwell);

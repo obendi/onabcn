@@ -19,18 +19,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import net.bendi.onabcn.service.ForecastService;
 import net.bendi.onabcn.service.dto.ForecastDTO;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class ForecastResource {
 	
-	public ForecastResource() {
-		
+	private ForecastService forecastService;
+	
+	public ForecastResource(ForecastService forecastService) {
+		this.forecastService = forecastService;
 	}
 	
 	@GetMapping("/forecast")
 	public ResponseEntity<List<ForecastDTO>> getForecast() {
+		
+		forecastService.getServerData();
+		
 		return new ResponseEntity<List<ForecastDTO>>(parseData(getForecastData()), HttpStatus.OK);
 	}
 	
