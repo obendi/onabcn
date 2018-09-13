@@ -19,6 +19,9 @@ export class ForecastChartComponent implements OnInit {
 
   datePipe:DatePipe = new DatePipe('en-US');
 
+  public dateStart:Date = new Date();
+  public dateEnd:Date = new Date();
+
   // lineChart
   public lineChartData:Array<any> = [
     {data: [], label: 'Mar total'},
@@ -45,12 +48,12 @@ export class ForecastChartComponent implements OnInit {
 
   public getForecast():void {
 
+    
+
       this
         .forecastService
-        .getForecast()
+        .getForecast(this.dateStart, this.dateEnd)
         .subscribe((data: Forecast[]) => {
-
-          console.log(data);
 
           let _lineChartLabels:Array<any> = [];
           let _height:Array<any> = [];

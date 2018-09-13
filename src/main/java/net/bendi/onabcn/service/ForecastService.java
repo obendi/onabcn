@@ -2,7 +2,9 @@ package net.bendi.onabcn.service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -15,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 import net.bendi.onabcn.domain.Forecast;
 import net.bendi.onabcn.repository.ForecastRepository;
+import net.bendi.onabcn.service.dto.ForecastDTO;
 
 @Service
 public class ForecastService {
@@ -25,6 +28,33 @@ public class ForecastService {
 		this.forecastRepository = forecastRepository;
 	}
 	
+	public List<ForecastDTO> getForecast(Date dateStart, Date dateEnd) {
+		
+		List<ForecastDTO> result = new ArrayList<ForecastDTO>();
+		
+		List<Forecast> forecastList;
+		if (dateStart == null || dateEnd == null) {
+			forecastList = this.forecastRepository.findAll();
+		}
+		else {
+			forecastList = this.forecastRepository.findAllByDateBetween(dateStart, dateEnd);
+		}
+		
+		for (Forecast forecast:forecastList) {
+			ForecastDTO forecastDTO = new ForecastDTO();
+			
+			forecastDTO.setDate(forecast.getDate());
+			forecastDTO.setHeight(forecast.getTotalHeight());
+			forecastDTO.setWindSwell(forecast.getWindSwellHeight());
+			forecastDTO.setPrimarySwell(forecast.getPrimarySwellHeight());
+			forecastDTO.setSecondarySwell(forecast.getSecondarySwellHeight());
+			
+			result.add(forecastDTO);
+		}
+		
+		return result;
+	}
+	
 	public void getServerData() {
 		RestTemplate restTemplate = new RestTemplate();
 		String url = "http://calipso.puertos.es/TablaAccesoSimplificado/util/get_wanadata.php";
@@ -33,6 +63,7 @@ public class ForecastService {
 		parametersMap.add("point", "2111136");
 		parametersMap.add("name", "Barcelona");
 		
+		Date lastUpdate = new Date();
 		String data = restTemplate.postForObject(url, parametersMap, String.class);
 		
 		Document document = Jsoup.parse(data);
@@ -80,6 +111,7 @@ public class ForecastService {
 					forecastItem.setSecondarySwellHeight(secondarySwell);
 				}
 				
+				forecastItem.setLastUpdate(lastUpdate);
 				forecastRepository.save(forecastItem);
 				
 				index++;

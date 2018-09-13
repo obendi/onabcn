@@ -576,7 +576,7 @@ var ForecastChartComponent = /** @class */ (function () {
             var _windSwell = [];
             var _primarySwell = [];
             var _secondarySwell = [];
-            for (var index = 0; index < 12; index++) {
+            for (var index = 0; index < data.length; index++) {
                 _lineChartLabels.push(_this.datePipe.transform(data[index].date, 'EEEE dd/MM/yy - HH:mm'));
                 _height.push(data[index].height);
                 _windSwell.push(data[index].windSwell);
@@ -729,7 +729,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/oscar/dev/worksapce/onabcn/src/app/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/o-bendicho/dev/onabcn/workspace/onabcn/src/main/webapp/src/main.ts */"./src/main.ts");
 
 
 /***/ })

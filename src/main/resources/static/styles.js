@@ -539,7 +539,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/oscar/dev/worksapce/onabcn/src/app/src/styles.scss */"./src/styles.scss");
+module.exports = __webpack_require__(/*! /home/o-bendicho/dev/onabcn/workspace/onabcn/src/main/webapp/src/styles.scss */"./src/styles.scss");
 
 
 /***/ })
