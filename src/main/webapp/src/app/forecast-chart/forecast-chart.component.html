@@ -1,18 +1,34 @@
-<div style="display: block;">
-  <canvas baseChart
-    [datasets]="lineChartData"
-    [labels]="lineChartLabels"
-    [options]="lineChartOptions"
-    [colors]="lineChartColors"
-    [legend]="lineChartLegend"
-    [chartType]="lineChartType"
-    (chartHover)="chartHovered($event)"
-    (chartClick)="chartClicked($event)">
-  </canvas>
+<div class="container">
+  <mat-card>
+    <div style="display: block;">
+      <canvas baseChart
+        [datasets]="lineChartData"
+        [labels]="lineChartLabels"
+        [options]="lineChartOptions"
+        [colors]="lineChartColors"
+        [legend]="lineChartLegend"
+        [chartType]="lineChartType"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)">
+      </canvas>
+    </div>
+  </mat-card>
 </div>
 
-<input [matDatepicker]="myDatepicker">
-<mat-datepicker #myDatepicker></mat-datepicker>
+<div class="container">
+  <mat-card>
+    <mat-form-field>
+      <input matInput [matDatepicker]="dateFromPicker" placeholder="Date from" [formControl]="dateFrom">
+      <mat-datepicker-toggle matSuffix [for]="dateFromPicker"></mat-datepicker-toggle>
+      <mat-datepicker #dateFromPicker></mat-datepicker>
+    </mat-form-field>
 
+    <mat-form-field>
+      <input matInput [matDatepicker]="dateToPicker" placeholder="Date to" [formControl]="dateTo">
+      <mat-datepicker-toggle matSuffix [for]="dateToPicker"></mat-datepicker-toggle>
+      <mat-datepicker #dateToPicker></mat-datepicker>
+    </mat-form-field>
 
-<button type="button" class="btn btn-primary" (click)="getForecast()">Get forecast</button>      
+    <button mat-raised-button color="primary" (click)="getForecast()">Get forecast</button>
+  </mat-card>
+</div>

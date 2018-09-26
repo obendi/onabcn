@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ForecastChartComponent } from './forecast-chart/forecast-chart.component';
@@ -11,7 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CurrentTimeComponent } from './current-time/current-time.component';
 import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatNativeDateModule, MatDatepickerModule } from '@angular/material';
+import { MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, MatButtonModule, MatCardModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -23,8 +23,13 @@ import { MatButtonModule, MatNativeDateModule, MatDatepickerModule } from '@angu
     BrowserModule, BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
     ChartsModule
   ],
   providers: [ForecastService, DatePipe],

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ForecastService } from '../services/forecast.service';
 import { Forecast } from '../services/forecast';
 
+import { FormControl } from '@angular/forms';
+
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -14,13 +16,13 @@ export class ForecastChartComponent implements OnInit {
   constructor(private forecastService: ForecastService) { }
 
   ngOnInit() {
-    this.getForecast();
+    //this.getForecast();
   }
 
-  datePipe:DatePipe = new DatePipe('en-US');
+  dateFrom = new FormControl(new Date());
+  dateTo = new FormControl(new Date());
 
-  public dateStart:Date = new Date();
-  public dateEnd:Date = new Date();
+  private datePipe:DatePipe = new DatePipe('en-US');
 
   // lineChart
   public lineChartData:Array<any> = [
@@ -52,7 +54,7 @@ export class ForecastChartComponent implements OnInit {
 
       this
         .forecastService
-        .getForecast(this.dateStart, this.dateEnd)
+        .getForecast(this.dateFrom.value, this.dateTo.value)
         .subscribe((data: Forecast[]) => {
 
           let _lineChartLabels:Array<any> = [];
@@ -62,7 +64,7 @@ export class ForecastChartComponent implements OnInit {
           let _secondarySwell:Array<any> = [];
 
           for (let index=0; index<data.length; index++) {
-            _lineChartLabels.push(this.datePipe.transform(data[index].date, 'EEEE dd/MM/yy - HH:mm'));
+            _lineChartLabels.push(this.datePipe.transform(data[index].date, 'dd/MM/yy - HH:mm'));
             _height.push(data[index].height);
             _windSwell.push(data[index].windSwell);
             _primarySwell.push(data[index].primarySwell);
