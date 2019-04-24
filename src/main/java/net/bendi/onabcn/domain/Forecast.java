@@ -21,6 +21,8 @@ public class Forecast implements Serializable {
 	private Float windSwellHeight;
 	private Float primarySwellHeight;
 	private Float secondarySwellHeight;
+
+	private Float windSpeed;
 	
 	private Date lastUpdate;
 	
@@ -53,6 +55,12 @@ public class Forecast implements Serializable {
 	}
 	public void setSecondarySwellHeight(Float secondarySwellHeight) {
 		this.secondarySwellHeight = secondarySwellHeight;
+	}
+	public Float getWindSpeed() {
+		return windSpeed;
+	}
+	public void setWindSpeed(Float windSpeed) {
+		this.windSpeed = windSpeed;
 	}
 	public Date getLastUpdate() {
 		return lastUpdate;

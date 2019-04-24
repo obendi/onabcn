@@ -1,5 +1,8 @@
 package net.bendi.onabcn.web.rest;
 
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -30,7 +33,17 @@ public class ForecastResource {
 			@DateTimeFormat(pattern="ddMMyyyy") @RequestParam("dateEnd") Date dateEnd) {
 		
 		forecastService.getServerData();
+		
+		Instant instant = Instant.now();
+		ZoneId zoneId = ZoneId.systemDefault();
+		ZonedDateTime zdt = ZonedDateTime.ofInstant(instant, zoneId);
+		
+		ZonedDateTime zdtStart = zdt.toLocalDate().atStartOfDay(zoneId);
+		ZonedDateTime zdtTomorrowStart = zdtStart.plusDays(1);
+		
+		Date startDate = Date.from(zdtStart.toInstant());
+		Date endDate = Date.from(zdtTomorrowStart.toInstant());
 				
-		return new ResponseEntity<List<ForecastDTO>>(forecastService.getForecast(dateStart, dateEnd), HttpStatus.OK);
+		return new ResponseEntity<>(forecastService.getForecast(startDate, endDate), HttpStatus.OK);
 	}
 }

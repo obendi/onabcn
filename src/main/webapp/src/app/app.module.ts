@@ -11,7 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CurrentTimeComponent } from './current-time/current-time.component';
 import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, MatButtonModule, MatCardModule, MAT_DATE_LOCALE } from '@angular/material';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -24,18 +24,12 @@ import { MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatInputM
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCardModule,
-    ChartsModule
+    ChartsModule,
+    NgbModule
   ],
   providers: [
     ForecastService, 
-    DatePipe,
-    {provide: MAT_DATE_LOCALE, useValue: 'es-ES'}],
+    DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

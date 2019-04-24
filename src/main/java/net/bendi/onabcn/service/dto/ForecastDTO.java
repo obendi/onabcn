@@ -9,6 +9,8 @@ public class ForecastDTO {
 	private Float windSwell;
 	private Float primarySwell;
 	private Float secondarySwell;
+
+	private Float windSpeed;
 	
 	public ForecastDTO() {
 		
@@ -47,6 +49,13 @@ public class ForecastDTO {
 	}
 	public void setSecondarySwell(Float secondarySwell) {
 		this.secondarySwell = secondarySwell;
+	}
+
+	public Float getWindSpeed(){
+		return windSpeed;
+	}
+	public void setWindSpeed(Float windSpeed) {
+		this.windSpeed = windSpeed;
 	}
 
 	@Override

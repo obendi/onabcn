@@ -4,4 +4,5 @@ export class Forecast {
     windSwell: Number;
     primarySwell: Number;
     secondarySwell: Number;
+    windSpeed: Number;
 }

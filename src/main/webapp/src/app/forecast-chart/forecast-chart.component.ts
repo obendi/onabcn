@@ -27,13 +27,34 @@ export class ForecastChartComponent implements OnInit {
   // lineChart
   public lineChartData:Array<any> = [
     {data: [], label: 'Mar total'},
-    {data: [], label: 'Mar viento'},
-    {data: [], label: 'Mar primario'},
-    {data: [], label: 'Mar secundario'}
+    //{data: [], label: 'Mar viento'},
+    {data: [], label: 'Mar primario'}
+    //{data: [], label: 'Mar secundario'},
+    //{data: [], label: 'Velocidad viento'}
   ];
   public lineChartLabels:Array<any> = [];
   public lineChartOptions:any = {
-    responsive: true
+    responsive: true,
+    scales: {
+      yAxes: [{
+        display: true,
+        ticks: {
+          suggestedMin:0,
+          suggestedMax:2.0,
+          beginAtZero: true
+        }
+      }]
+    },
+    tooltips: {
+      enabled: true,
+      mode: 'single',
+      callbacks: {
+        label: function(tooltipItems, data) {
+          console.log(data);
+          return tooltipItems.yLabel + 'm';
+        }
+      }
+    }
   };
   public lineChartColors:Array<any> = [
    /*  { // grey
@@ -46,7 +67,7 @@ export class ForecastChartComponent implements OnInit {
     } */
   ];
   public lineChartLegend:boolean = true;
-  public lineChartType:string = 'bar';
+  public lineChartType:string = 'line';
 
   public getForecast():void {
 
@@ -62,20 +83,23 @@ export class ForecastChartComponent implements OnInit {
           let _windSwell:Array<any> = [];
           let _primarySwell:Array<any> = [];
           let _secondarySwell:Array<any> = [];
+          let _windSpeed:Array<any> = [];
 
           for (let index=0; index<data.length; index++) {
-            _lineChartLabels.push(this.datePipe.transform(data[index].date, 'dd/MM/yy - HH:mm'));
+            _lineChartLabels.push(this.datePipe.transform(data[index].date, 'HH:mm'));
             _height.push(data[index].height);
             _windSwell.push(data[index].windSwell);
             _primarySwell.push(data[index].primarySwell);
             _secondarySwell.push(data[index].secondarySwell);
+            _windSpeed.push(data[index].windSpeed);
           }
 
           this.lineChartLabels = _lineChartLabels;
           this.lineChartData[0].data = _height;
-          this.lineChartData[1].data = _windSwell;
-          this.lineChartData[2].data = _primarySwell;
-          this.lineChartData[3].data = _secondarySwell;
+          //this.lineChartData[1].data = _windSwell;
+          this.lineChartData[1].data = _primarySwell;
+         // this.lineChartData[3].data = _secondarySwell;
+          //this.lineChartData[4].data = _windSpeed;
       });
   }
  
