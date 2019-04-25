@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.bendi.onabcn.service.ForecastService;
-import net.bendi.onabcn.service.dto.ForecastDTO;
+import net.bendi.onabcn.business.dto.ForecastDTO;
+import net.bendi.onabcn.business.forecast.ForecastService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -32,7 +32,7 @@ public class ForecastResource {
 			@DateTimeFormat(pattern="ddMMyyyy") @RequestParam("dateStart") Date dateStart,
 			@DateTimeFormat(pattern="ddMMyyyy") @RequestParam("dateEnd") Date dateEnd) {
 		
-		forecastService.getServerData();
+		forecastService.loadData();
 		
 		Instant instant = Instant.now();
 		ZoneId zoneId = ZoneId.systemDefault();

@@ -1,4 +1,4 @@
-package net.bendi.onabcn.service.dto;
+package net.bendi.onabcn.business.dto;
 
 import java.util.Date;
 
