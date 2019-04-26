@@ -38,7 +38,7 @@ public class ForecastServiceImpl implements ForecastService {
 
 		List<ForecastDTO> result = new ArrayList<>();
 
-		List<Forecast> forecastList;
+		List<Forecast> forecastList=null;
 		if (dateStart == null || dateEnd == null) {
 			forecastList = this.forecastRepository.findAll();
 		} else {
@@ -47,7 +47,7 @@ public class ForecastServiceImpl implements ForecastService {
 
 		int counter = 0;
 		for (Forecast forecast : forecastList) {
-			if (counter++ % 4 == 0) {
+			if (counter++ % 12 == 0) {
 				ForecastDTO forecastDTO = new ForecastDTO();
 
 				forecastDTO.setDate(forecast.getDate());
@@ -56,6 +56,8 @@ public class ForecastServiceImpl implements ForecastService {
 				forecastDTO.setPrimarySwell(forecast.getPrimarySwellHeight());
 				forecastDTO.setSecondarySwell(forecast.getSecondarySwellHeight());
 				forecastDTO.setWindSpeed(forecast.getWindSpeed());
+				forecastDTO.setWindDirection(forecast.getWindDirection());
+				forecastDTO.setWindDirectionComponent(forecast.getWindDirectionComponent());
 
 				result.add(forecastDTO);
 			}
@@ -68,7 +70,6 @@ public class ForecastServiceImpl implements ForecastService {
 	public void loadData() {
 
 		String data = puertosClient.getForecast("Barcelona", "2111136");
-		
 		
 		Document document = Jsoup.parse(data);
 		Elements tbody = document.getElementsByTag("tbody");
@@ -109,7 +110,15 @@ public class ForecastServiceImpl implements ForecastService {
 				forecastItem.setWindSpeed(windSpeed);
 			} else if (index == 3) {
 				// Dirección del viento: 197-SSW
+				String[] windDirectionString = forecastRowColumnValue.text().split("-");
 				
+				if (windDirectionString.length > 0) {
+					forecastItem.setWindDirection(Integer.parseInt(windDirectionString[0]));
+					
+					if (windDirectionString.length > 1) {
+						forecastItem.setWindDirectionComponent(windDirectionString[1]);
+					}
+				}
 			} else if (index == 4) {
 				// Mar total: 0.43
 				Float height = new Float(forecastRowColumnValue.text());

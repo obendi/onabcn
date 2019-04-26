@@ -11,6 +11,7 @@ import net.bendi.onabcn.domain.Forecast;
 @Repository
 public interface ForecastRepository extends JpaRepository<Forecast, Date> {
 	
+	List<Forecast> findAllByDate(Date date);
 	List<Forecast> findAllByDateBetween(Date dateStart, Date dateEnd);
 
 }

@@ -19,8 +19,12 @@ export class ForecastChartComponent implements OnInit {
     //this.getForecast();
   }
 
+  data:Forecast[];
+
+  pdate:any;
   dateFrom = new FormControl(new Date());
   dateTo = new FormControl(new Date());
+  dateService:Date;
 
   private datePipe:DatePipe = new DatePipe('en-US');
 
@@ -69,13 +73,23 @@ export class ForecastChartComponent implements OnInit {
   public lineChartLegend:boolean = true;
   public lineChartType:string = 'line';
 
-  public getForecast():void {
+  public getForecastToday():void {
+    this.getForecast(new Date());
+  }
 
-    
+  public getForecastTomorrow():void {
+    var today = new Date();
+    var tomorrow = new Date();
+    tomorrow.setDate(today.getDate()+1);
+
+    this.getForecast(tomorrow);
+  }
+  
+  public getForecast(date:Date):void {
 
       this
         .forecastService
-        .getForecast(this.dateFrom.value, this.dateTo.value)
+        .getForecast(date)
         .subscribe((data: Forecast[]) => {
 
           let _lineChartLabels:Array<any> = [];
@@ -86,7 +100,7 @@ export class ForecastChartComponent implements OnInit {
           let _windSpeed:Array<any> = [];
 
           for (let index=0; index<data.length; index++) {
-            _lineChartLabels.push(this.datePipe.transform(data[index].date, 'HH:mm'));
+            _lineChartLabels.push(this.datePipe.transform(data[index].date, 'EEE HH:mm'));
             _height.push(data[index].height);
             _windSwell.push(data[index].windSwell);
             _primarySwell.push(data[index].primarySwell);
@@ -100,6 +114,8 @@ export class ForecastChartComponent implements OnInit {
           this.lineChartData[1].data = _primarySwell;
          // this.lineChartData[3].data = _secondarySwell;
           //this.lineChartData[4].data = _windSpeed;
+
+          this.data = data;
       });
   }
  

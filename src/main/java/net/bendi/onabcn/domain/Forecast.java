@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Forecast implements Serializable {
@@ -15,14 +17,17 @@ public class Forecast implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 	
 	private Float totalHeight;
 	private Float windSwellHeight;
 	private Float primarySwellHeight;
 	private Float secondarySwellHeight;
-
+	
 	private Float windSpeed;
+	private Integer windDirection;
+	private String windDirectionComponent;
 	
 	private Date lastUpdate;
 	
@@ -61,6 +66,18 @@ public class Forecast implements Serializable {
 	}
 	public void setWindSpeed(Float windSpeed) {
 		this.windSpeed = windSpeed;
+	}
+	public Integer getWindDirection() {
+		return windDirection;
+	}
+	public void setWindDirection(Integer windDirection) {
+		this.windDirection = windDirection;
+	}
+	public String getWindDirectionComponent() {
+		return windDirectionComponent;
+	}
+	public void setWindDirectionComponent(String windDirectionComponent) {
+		this.windDirectionComponent = windDirectionComponent;
 	}
 	public Date getLastUpdate() {
 		return lastUpdate;

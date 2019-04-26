@@ -14,7 +14,18 @@ export class ForecastService {
 
   constructor(private http: HttpClient, private datePipe:DatePipe) { }
 
-  getForecast(dateStart:Date, dateEnd:Date): Observable<Forecast[]> {
+  getForecast(date:Date): Observable<Forecast[]> {
+
+    let parameters = new HttpParams()
+    parameters = parameters.append("date", this.datePipe.transform(date, 'ddMMyyyy'));
+
+    return this.http.get<Forecast[]>(this.url, {params: parameters})
+        .pipe(
+          catchError(this.handleError<Forecast[]>('getForecast', []))
+        );
+  }
+
+  getForecastRange(dateStart:Date, dateEnd:Date): Observable<Forecast[]> {
 
     let parameters = new HttpParams()
     parameters = parameters.append("dateStart", this.datePipe.transform(dateStart, 'ddMMyyyy'));

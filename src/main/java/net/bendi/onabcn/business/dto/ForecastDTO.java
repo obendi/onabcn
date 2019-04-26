@@ -11,6 +11,8 @@ public class ForecastDTO {
 	private Float secondarySwell;
 
 	private Float windSpeed;
+	private Integer windDirection;
+	private String windDirectionComponent;
 	
 	public ForecastDTO() {
 		
@@ -56,6 +58,22 @@ public class ForecastDTO {
 	}
 	public void setWindSpeed(Float windSpeed) {
 		this.windSpeed = windSpeed;
+	}
+
+	public Integer getWindDirection() {
+		return windDirection;
+	}
+
+	public void setWindDirection(Integer windDirection) {
+		this.windDirection = windDirection;
+	}
+
+	public String getWindDirectionComponent() {
+		return windDirectionComponent;
+	}
+
+	public void setWindDirectionComponent(String windDirectionComponent) {
+		this.windDirectionComponent = windDirectionComponent;
 	}
 
 	@Override

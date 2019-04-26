@@ -10,7 +10,7 @@ public class PuertosClientConfig {
 	
 	@Bean
 	@ConfigurationProperties(prefix = "service.puertos")
-	PuertosClientProperties puertosServiceProperties() {
+	PuertosClientProperties puertosClientProperties() {
 		return new PuertosClientProperties();
 	}
 	

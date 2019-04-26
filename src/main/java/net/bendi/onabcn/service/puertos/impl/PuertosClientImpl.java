@@ -12,11 +12,11 @@ import net.bendi.onabcn.service.puertos.PuertosClientProperties;
 public class PuertosClientImpl implements PuertosClient {
 	
 	private RestTemplate restTemplate;
-	private PuertosClientProperties puertosServiceProperties;
+	private PuertosClientProperties puertosClientProperties;
 	
-	public PuertosClientImpl(RestTemplate restTemplate, PuertosClientProperties puertosServiceProperties) {
+	public PuertosClientImpl(RestTemplate restTemplate, PuertosClientProperties puertosClientProperties) {
 		this.restTemplate = restTemplate;
-		this.puertosServiceProperties = puertosServiceProperties;
+		this.puertosClientProperties = puertosClientProperties;
 	}
 
 	@Override
@@ -26,6 +26,6 @@ public class PuertosClientImpl implements PuertosClient {
 		parametersMap.add("name", name);
 		parametersMap.add("point", point);
 		
-		return restTemplate.postForObject(puertosServiceProperties.getEndpoint(), parametersMap, String.class);
+		return restTemplate.postForObject(puertosClientProperties.getEndpoint(), parametersMap, String.class);
 	}
 }

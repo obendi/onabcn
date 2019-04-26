@@ -14,6 +14,24 @@
         </canvas>
       </div>
 
-      <button mat-raised-button color="primary" (click)="getForecast()">Get forecast</button>
+      <div>
+        <ul>
+          <li *ngFor="let item of data"><span><img [ngStyle]="{'transform':'rotate(' + item.windDirection + 'deg)'}" src="http://www.iconarchive.com/download/i97281/iconsmind/outline/Triangle-ArrowUp.ico"/></span>{{item.windDirectionComponent}} {{item.windDirection}}</li>
+        </ul>
+      </div>
+
+      <form class="form-inline">
+        <div class="form-group">
+          <div class="input-group">
+            <input class="form-control" placeholder="dd-mm-yyy" name="dp" [(ngModel)]="pdate" ngbDatepicker #d="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    
+    <button type="button" class="btn btn-primary" (click)="getForecastToday()">Today</button>
+    <button type="button" class="btn btn-primary" (click)="getForecastTomorrow()">Tomorrow</button>
   </div>
 </div>
