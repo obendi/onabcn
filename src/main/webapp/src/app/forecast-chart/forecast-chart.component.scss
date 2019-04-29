@@ -1,0 +1,26 @@
+#dayButtons {
+    padding: 10px 0 50px;
+    text-align: center;
+}
+
+.forecast-item:nth-child(2n) {
+    background-color: rgba(0,105,148,0.1);
+}
+
+.forecast-item img {
+    width:100%;
+    height: auto;
+    padding: 25%;
+}
+
+.forecast-item span{
+    display: block;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+span.forecast-date {
+    display: block;
+    text-align: center;
+    padding-bottom: 20px;
+}

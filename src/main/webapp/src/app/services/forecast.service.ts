@@ -37,6 +37,17 @@ export class ForecastService {
         );
   }
 
+  getForecastResume(date:Date): Observable<Forecast[]> {
+
+    let parameters = new HttpParams()
+    parameters = parameters.append("date", this.datePipe.transform(date, 'ddMMyyyy'));
+
+    return this.http.get<Forecast[]>(this.url + "/resume", {params: parameters})
+        .pipe(
+          catchError(this.handleError<Forecast[]>('getForecast', []))
+        );
+  }
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);

@@ -1,3 +1,14 @@
+<div id="dayButtons" class="row justify-content-center">
+    <div class="col">
+      <button type="button" class="btn btn-primary" (click)="getForecastToday()">Today</button>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-primary" (click)="getForecastTomorrow()">Tomorrow</button>
+    </div>
+    <div class="col">
+        <button type="button" class="btn btn-primary" (click)="getForecastDayAfterTomorrow()">Day after tomorrow</button>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-sm">
@@ -13,25 +24,25 @@
           (chartClick)="chartClicked($event)">
         </canvas>
       </div>
+  </div>
+</div>
 
-      <div>
-        <ul>
-          <li *ngFor="let item of data"><span><img [ngStyle]="{'transform':'rotate(' + item.windDirection + 'deg)'}" src="http://www.iconarchive.com/download/i97281/iconsmind/outline/Triangle-ArrowUp.ico"/></span>{{item.windDirectionComponent}} {{item.windDirection}}</li>
-        </ul>
+<div class="row">
+  <div class="col-sm forecast-item" *ngFor="let item of data">
+    <div class="row">
+        <span class="forecast-date">{{item.date | date:'EEE HH:mm'}}</span>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <img [ngStyle]="{'transform':'rotate(' + flipDirection(item.totalDirection) + 'deg)'}" src="/assets/images/swell-arrow.svg"/>
+        <span><strong>{{item.totalHeight}}m</strong></span>
+        <span>{{item.totalDirectionComponent}} ({{item.totalDirection}}&deg;)</span>
       </div>
-
-      <form class="form-inline">
-        <div class="form-group">
-          <div class="input-group">
-            <input class="form-control" placeholder="dd-mm-yyy" name="dp" [(ngModel)]="pdate" ngbDatepicker #d="ngbDatepicker">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
-            </div>
-          </div>
-        </div>
-      </form>
-    
-    <button type="button" class="btn btn-primary" (click)="getForecastToday()">Today</button>
-    <button type="button" class="btn btn-primary" (click)="getForecastTomorrow()">Tomorrow</button>
+      <div class="col-6">
+        <img [ngStyle]="{'transform':'rotate(' + flipDirection(item.windDirection) + 'deg)'}" src="/assets/images/wind-arrow.svg"/>
+        <span><strong>{{item.windSpeed}} m/s</strong></span>
+        <span>{{item.windDirectionComponent}} ({{item.windDirection}}&deg;)</span>
+      </div>
+    </div>
   </div>
 </div>

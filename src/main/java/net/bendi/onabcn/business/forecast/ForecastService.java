@@ -7,6 +7,7 @@ import net.bendi.onabcn.business.dto.ForecastDTO;
 
 public interface ForecastService {
 	
+	public List<ForecastDTO> getForecastResume(Date date);
 	public List<ForecastDTO> getForecast(Date dateStart, Date dateEnd);
 
 	public void loadData();

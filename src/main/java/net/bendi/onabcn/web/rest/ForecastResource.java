@@ -37,11 +37,19 @@ public class ForecastResource {
 		ZonedDateTime zdt = ZonedDateTime.ofInstant(instant, zoneId);
 		
 		ZonedDateTime zdtStart = zdt.toLocalDate().atStartOfDay(zoneId);
-		ZonedDateTime zdtTomorrowStart = zdtStart.plusDays(2);
+		ZonedDateTime zdtTomorrowStart = zdtStart.plusDays(1).minusNanos(1);
 		
 		Date startDate = Date.from(zdtStart.toInstant());
 		Date endDate = Date.from(zdtTomorrowStart.toInstant());
 				
 		return new ResponseEntity<>(forecastService.getForecast(startDate, endDate), HttpStatus.OK);
+	}
+	
+	@GetMapping("/forecast/resume")
+	public ResponseEntity<List<ForecastDTO>> getForecastResume(@DateTimeFormat(pattern="ddMMyyyy") @RequestParam("date") Date date) {
+		
+		forecastService.loadData();
+				
+		return new ResponseEntity<>(forecastService.getForecastResume(date), HttpStatus.OK);
 	}
 }
