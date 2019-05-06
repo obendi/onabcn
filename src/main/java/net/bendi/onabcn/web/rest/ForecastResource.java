@@ -18,7 +18,7 @@ import net.bendi.onabcn.business.dto.ForecastDTO;
 import net.bendi.onabcn.business.forecast.ForecastService;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200", "https://onabcn.kerokuapp.com", "http://localhost:8080"})
+@CrossOrigin
 public class ForecastResource {
 	
 	private ForecastService forecastService;
