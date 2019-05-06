@@ -5,7 +5,6 @@ import { Forecast } from '../services/forecast';
 import { FormControl } from '@angular/forms';
 
 import { DatePipe } from '@angular/common';
-import { reduce } from 'rxjs/operators';
 
 @Component({
   selector: 'app-forecast-chart',
