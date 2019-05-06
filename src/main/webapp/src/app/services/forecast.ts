@@ -4,6 +4,7 @@ export class Forecast {
     totalHeight: Number;
     totalDirection: Number;
     totalDirectionComponent: String;
+    totalPeriod: Number;
 
     windSwell: Number;
     windSwellDirection: Number;
@@ -12,10 +13,12 @@ export class Forecast {
     primarySwell: Number;
     primarySwellDirection: Number;
     primarySwellDirectionComponent: String;
+    primarySwellPeriod: Number;
 
     secondarySwell: Number;
     secondarySwellDirection: Number;
     secondarySwellDirectionComponent: String;
+    secondarySwellPeriod: Number;
 
     windSpeed: Number;
     windDirection: Number;

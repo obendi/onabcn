@@ -1,26 +1,36 @@
-#dayButtons {
+#day-buttons {
     padding: 10px 0 50px;
     text-align: center;
 }
 
+#forecast-resume {
+    margin:25px 0;
+}
+
+.forecast-item {
+    font-size: 0.6em;
+    text-align: center;
+}
+
 .forecast-item:nth-child(2n) {
-    background-color: rgba(0,105,148,0.1);
+    background-color: rgba(0,105,148,0.05);
 }
 
-.forecast-item img {
-    width:100%;
-    height: auto;
-    padding: 25%;
-}
-
-.forecast-item span{
+.forecast-item-date span {
     display: block;
-    text-align: center;
-    padding-bottom: 20px;
+    color: #fff;
+    font-weight: bold;
+    background-color: rgba(0,105,148,1)
 }
 
-span.forecast-date {
-    display: block;
-    text-align: center;
-    padding-bottom: 20px;
+.red {
+    fill: #A21E4D;
+}
+
+.yellow {
+    fill: #D8AA00;
+}
+
+.green {
+    fill: #95A844;
 }

@@ -1,18 +1,18 @@
-<div id="dayButtons" class="row justify-content-center">
+<div id="day-buttons" class="row justify-content-center">
     <div class="col">
       <button type="button" class="btn btn-primary" (click)="getForecastToday()">Today</button>
     </div>
     <div class="col">
-      <button type="button" class="btn btn-primary" (click)="getForecastTomorrow()">Tomorrow</button>
+      <button type="button" class="btn btn-primary" (click)="getForecastTomorrow()">{{tomorrow | date:'EEEE'}}</button>
     </div>
     <div class="col">
-        <button type="button" class="btn btn-primary" (click)="getForecastDayAfterTomorrow()">Day after tomorrow</button>
+        <button type="button" class="btn btn-primary" (click)="getForecastDayAfterTomorrow()">{{dayAfterTomorrow | date:'EEEE'}}</button>
     </div>
 </div>
 
 <div class="row">
     <div class="col-sm">
-      <div style="display: block;">
+      <div style="display:block;">
         <canvas baseChart
           [datasets]="lineChartData"
           [labels]="lineChartLabels"
@@ -27,22 +27,36 @@
   </div>
 </div>
 
-<div class="row">
+<div id="forecast-resume" class="row no-gutters">
   <div class="col-sm forecast-item" *ngFor="let item of data">
     <div class="row">
-        <span class="forecast-date">{{item.date | date:'EEE HH:mm'}}</span>
+      <div class="col forecast-item-date">
+        <span>{{item.date | date:'HH:mm'}}</span>
+      </div>
     </div>
-    <div class="row">
-      <div class="col-6">
-        <img [ngStyle]="{'transform':'rotate(' + flipDirection(item.totalDirection) + 'deg)'}" src="/assets/images/swell-arrow.svg"/>
-        <span><strong>{{item.totalHeight}}m</strong></span>
-        <span>{{item.totalDirectionComponent}} ({{item.totalDirection}}&deg;)</span>
+    <div class="row align-items-center">
+      <div class="col-1"></div>
+      <div class="col-2">
+        <span class="align-bottom"><strong>{{item.totalHeight}} m</strong></span>
       </div>
-      <div class="col-6">
-        <img [ngStyle]="{'transform':'rotate(' + flipDirection(item.windDirection) + 'deg)'}" src="/assets/images/wind-arrow.svg"/>
-        <span><strong>{{item.windSpeed}} m/s</strong></span>
-        <span>{{item.windDirectionComponent}} ({{item.windDirection}}&deg;)</span>
+      <div class="col-2">
+          <span class="align-bottom">{{item.totalPeriod}} s</span>
+        </div>
+      <div class="col-2">
+        <svg viewBox="0 0 50 50" [ngStyle]="{'transform':'rotate(' + flipDirection(item.totalDirection) + 'deg)'}">
+          <polygon points="25,6 15,40, 25,35, 35,40" style="fill:rgba(0,105,148,1)" />
+        </svg>
+        <span>{{item.totalDirectionComponent}}</span>
       </div>
+      <div class="col-2">
+        <span>{{item.windSpeed}} m/s</span>
+      </div>
+      <div class="col-2">
+          <svg viewBox="0 0 50 50" [ngStyle]="{'transform':'rotate(' + flipDirection(item.windDirection) + 'deg)'}">
+            <polygon points="25,6 15,40, 25,35, 35,40" [ngClass]="getWindSpeedColorClass(item.windSpeed)" />
+          </svg>
+          <span>{{item.windDirectionComponent}}</span>
+        </div>
     </div>
   </div>
 </div>

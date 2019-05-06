@@ -5,6 +5,7 @@ import { Forecast } from '../services/forecast';
 import { FormControl } from '@angular/forms';
 
 import { DatePipe } from '@angular/common';
+import { reduce } from 'rxjs/operators';
 
 @Component({
   selector: 'app-forecast-chart',
@@ -16,6 +17,9 @@ export class ForecastChartComponent implements OnInit {
   constructor(private forecastService: ForecastService) { }
 
   ngOnInit() {
+    this.tomorrow.setDate(this.today.getDate()+1);
+    this.dayAfterTomorrow.setDate(this.today.getDate()+2);
+
     this.getForecastToday();
   }
 
@@ -23,10 +27,12 @@ export class ForecastChartComponent implements OnInit {
 
   dateFrom = new FormControl(new Date());
   dateTo = new FormControl(new Date());
-  dateService:Date;
-
 
   private datePipe:DatePipe = new DatePipe('en-US');
+
+  today:Date = new Date();
+  tomorrow:Date = new Date();
+  dayAfterTomorrow:Date = new Date();
 
   // lineChart
   public lineChartData:Array<any> = [
@@ -36,13 +42,17 @@ export class ForecastChartComponent implements OnInit {
   public lineChartLabels:Array<any> = [];
   public lineChartOptions:any = {
     responsive: true,
+    aspectRatio: 2,
     scales: {
       yAxes: [{
         display: true,
         ticks: {
           suggestedMin:0,
-          suggestedMax:2.0,
-          beginAtZero: true
+          suggestedMax:1.5,
+          beginAtZero: true,
+          callback: function(value, index, values) {
+            return value + " m";
+          }
         }
       }]
     },
@@ -78,27 +88,18 @@ export class ForecastChartComponent implements OnInit {
   public lineChartType:string = 'line';
 
   public getForecastToday():void {
-    this.getForecast(new Date());
+    this.getForecast(this.today);
   }
 
   public getForecastTomorrow():void {
-    var today = new Date();
-    var tomorrow = new Date();
-    tomorrow.setDate(today.getDate()+1);
-
-    this.getForecast(tomorrow);
+    this.getForecast(this.tomorrow);
   }
 
   public getForecastDayAfterTomorrow():void {
-    var today = new Date();
-    var tomorrow = new Date();
-    tomorrow.setDate(today.getDate()+2);
-
-    this.getForecast(tomorrow);
+    this.getForecast(this.dayAfterTomorrow);
   }
   
   public getForecast(date:Date):void {
-
       this
         .forecastService
         .getForecastResume(date)
@@ -112,7 +113,7 @@ export class ForecastChartComponent implements OnInit {
           let _windSpeed:Array<any> = [];
 
           for (let index=0; index<data.length; index++) {
-            _lineChartLabels.push(this.datePipe.transform(data[index].date, 'EEE HH:mm'));
+            _lineChartLabels.push(this.datePipe.transform(data[index].date, 'HH:mm'));
             _height.push(data[index].totalHeight);
             _windSwell.push(data[index].windSwell);
             _primarySwell.push(data[index].primarySwell);
@@ -129,12 +130,23 @@ export class ForecastChartComponent implements OnInit {
   }
 
   public flipDirection(direction:number):number {
-
     if (direction<180) {
       return direction+180;
     }
     else {
       return direction-180;
+    }
+  }
+
+  public getWindSpeedColorClass(windSpeed:number):string {
+    if (windSpeed > 10) {
+      return "red";
+    }
+    else if(windSpeed > 5) {
+      return "yellow";
+    }
+    else {
+      return "green";
     }
   }
 }

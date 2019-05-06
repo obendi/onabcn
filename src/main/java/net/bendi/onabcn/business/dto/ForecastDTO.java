@@ -8,6 +8,7 @@ public class ForecastDTO {
 	private Float totalHeight;
 	private Integer totalDirection;
 	private String totalDirectionComponent;
+	private Float totalPeriod;
 	
 	private Float windSwell;
 	private Integer windSwellDirection;
@@ -16,10 +17,12 @@ public class ForecastDTO {
 	private Float primarySwell;
 	private Integer primarySwellDirection;
 	private String primarySwellDirectionComponent;
+	private Float primarySwellPeriod;
 	
 	private Float secondarySwell;
 	private Integer secondarySwellDirection;
 	private String secondarySwellDirectionComponent;
+	private Float secondarySwellPeriod;
 
 	private Float windSpeed;
 	private Integer windDirection;
@@ -33,8 +36,8 @@ public class ForecastDTO {
 	public Float getTotalHeight() {
 		return totalHeight;
 	}
-	public void setTotalHeight(Float height) {
-		this.totalHeight = height;
+	public void setTotalHeight(Float totalHeight) {
+		this.totalHeight = totalHeight;
 	}
 	public Integer getTotalDirection() {
 		return totalDirection;
@@ -45,8 +48,14 @@ public class ForecastDTO {
 	public String getTotalDirectionComponent() {
 		return totalDirectionComponent;
 	}
-	public void setTotalDirectionComponent(String totalDirectionComonent) {
-		this.totalDirectionComponent = totalDirectionComonent;
+	public void setTotalDirectionComponent(String totalDirectionComponent) {
+		this.totalDirectionComponent = totalDirectionComponent;
+	}
+	public Float getTotalPeriod() {
+		return totalPeriod;
+	}
+	public void setTotalPeriod(Float totalPeriod) {
+		this.totalPeriod = totalPeriod;
 	}
 	public Float getWindSwell() {
 		return windSwell;
@@ -84,6 +93,12 @@ public class ForecastDTO {
 	public void setPrimarySwellDirectionComponent(String primarySwellDirectionComponent) {
 		this.primarySwellDirectionComponent = primarySwellDirectionComponent;
 	}
+	public Float getPrimarySwellPeriod() {
+		return primarySwellPeriod;
+	}
+	public void setPrimarySwellPeriod(Float primarySwellPeriod) {
+		this.primarySwellPeriod = primarySwellPeriod;
+	}
 	public Float getSecondarySwell() {
 		return secondarySwell;
 	}
@@ -102,6 +117,12 @@ public class ForecastDTO {
 	public void setSecondarySwellDirectionComponent(String secondarySwellDirectionComponent) {
 		this.secondarySwellDirectionComponent = secondarySwellDirectionComponent;
 	}
+	public Float getSecondarySwellPeriod() {
+		return secondarySwellPeriod;
+	}
+	public void setSecondarySwellPeriod(Float secondarySwellPeriod) {
+		this.secondarySwellPeriod = secondarySwellPeriod;
+	}
 	public Float getWindSpeed() {
 		return windSpeed;
 	}
@@ -119,5 +140,5 @@ public class ForecastDTO {
 	}
 	public void setWindDirectionComponent(String windDirectionComponent) {
 		this.windDirectionComponent = windDirectionComponent;
-	}	
+	}
 }

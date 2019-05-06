@@ -154,7 +154,7 @@ public class ForecastServiceImpl implements ForecastService {
 					}
 				}
 				
-			} else if (index == 6) {
+			} else if (index == 7) {
 				forecastItem.setTotalPeriod(Float.parseFloat(forecastRowColumnValue.text().equals("") ? "0" : forecastRowColumnValue.text()));
 				
 			} else if (index == 8) {
