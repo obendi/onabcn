@@ -18,7 +18,7 @@ import net.bendi.onabcn.business.dto.ForecastDTO;
 import net.bendi.onabcn.business.forecast.ForecastService;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class ForecastResource {
 	
 	private ForecastService forecastService;
