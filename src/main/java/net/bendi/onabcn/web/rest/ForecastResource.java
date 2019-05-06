@@ -35,8 +35,6 @@ public class ForecastResource {
 	@GetMapping("/forecast")
 	public ResponseEntity<List<ForecastDTO>> getForecast(@DateTimeFormat(pattern="ddMMyyyy") @RequestParam("date") Date date) {
 		
-		forecastService.loadData();
-		
 		Instant instant = date.toInstant();
 		ZoneId zoneId = ZoneId.systemDefault();
 		ZonedDateTime zdt = ZonedDateTime.ofInstant(instant, zoneId);
@@ -52,9 +50,7 @@ public class ForecastResource {
 	
 	@GetMapping("/forecast/resume")
 	public ResponseEntity<List<ForecastDTO>> getForecastResume(@DateTimeFormat(pattern="ddMMyyyy") @RequestParam("date") Date date) {
-		
-		forecastService.loadData();
-				
+					
 		return new ResponseEntity<>(forecastService.getForecastResume(date), HttpStatus.OK);
 	}
 }
