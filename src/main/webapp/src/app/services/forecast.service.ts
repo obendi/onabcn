@@ -10,7 +10,7 @@ import { DatePipe } from '@angular/common';
 })
 export class ForecastService {
 
-  private url = "http://localhost:8080/forecast";
+  private url = "https://onabcn.herokuapp.com/";
 
   constructor(private http: HttpClient, private datePipe:DatePipe) { }
 
