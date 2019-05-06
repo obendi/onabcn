@@ -4,13 +4,14 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Forecast } from './forecast';
 import { DatePipe } from '@angular/common';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ForecastService {
 
-  private url = "https://onabcn.herokuapp.com";
+  private url = environment.serverUrl + "/forecast";
 
   constructor(private http: HttpClient, private datePipe:DatePipe) { }
 
