@@ -27,6 +27,11 @@ public class ForecastResource {
 		this.forecastService = forecastService;
 	}
 	
+	@GetMapping("/echo")
+	public ResponseEntity<String> echo() {
+		return new ResponseEntity<>("echo", HttpStatus.OK);
+	}
+	
 	@GetMapping("/forecast")
 	public ResponseEntity<List<ForecastDTO>> getForecast(@DateTimeFormat(pattern="ddMMyyyy") @RequestParam("date") Date date) {
 		
