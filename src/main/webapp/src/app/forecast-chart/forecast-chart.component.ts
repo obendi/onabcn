@@ -74,13 +74,14 @@ export class ForecastChartComponent implements OnInit {
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(0,105,148,0.8)'
     },
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
+    {
+      borderColor: 'rgba(0,105,148,0.4)',
+      pointBackgroundColor: 'rgba(0,105,148,1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+      pointHoverBorderColor: 'rgba(0,105,148,0.8)',
+      fill: false,
+      borderDash: [5, 5]
     }
   ];
   public lineChartLegend:boolean = true;
@@ -121,8 +122,8 @@ export class ForecastChartComponent implements OnInit {
           }
 
           this.lineChartLabels = _lineChartLabels;
-          this.lineChartData[0].data = _height;
-          this.lineChartData[1].data = _primarySwell;
+          this.lineChartData[0].data = _primarySwell;
+          this.lineChartData[1].data = _height;
 
           this.data = data;
       });

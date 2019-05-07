@@ -32,19 +32,19 @@
         <span>{{item.date | date:'HH:mm'}}</span>
       </div>
     </div>
-    <div class="row align-items-center">
+    <div class="row align-items-center no-gutters">
       <div class="col-1"></div>
       <div class="col-2">
-        <span class="align-bottom"><strong>{{item.totalHeight}} m</strong></span>
+        <span class="align-bottom"><strong>{{item.primarySwell}} m</strong></span>
       </div>
       <div class="col-2">
-          <span class="align-bottom">{{item.totalPeriod}} s</span>
+          <span class="align-bottom">{{item.primarySwellPeriod}} s</span>
         </div>
       <div class="col-2">
-        <svg viewBox="0 0 50 50" [ngStyle]="{'transform':'rotate(' + flipDirection(item.totalDirection) + 'deg)'}">
+        <svg viewBox="0 0 50 50" [ngStyle]="{'transform':'rotate(' + flipDirection(item.primarySwellDirection) + 'deg)'}">
           <polygon points="25,6 15,40, 25,35, 35,40" style="fill:rgba(0,105,148,1)" />
         </svg>
-        <span>{{item.totalDirectionComponent}}</span>
+        <span>{{item.primarySwellDirectionComponent}}</span>
       </div>
       <div class="col-2">
         <span>{{item.windSpeed}} m/s</span>

@@ -21,7 +21,8 @@ public class ScheduledTasks {
 	@Scheduled(initialDelay = 1000 ,fixedRate = 3600000)
 	public void loadPuertosData() {
 		
-		logger.info("Executing load puertos data task @ {}", new Date());
+		logger.info("Init task: LoadPuertosData @ {}", new Date());
 		forecastService.loadData();
+		logger.info("End task: LoadPuertosData @ {}", new Date());
 	}
 }

@@ -181,18 +181,21 @@ public class ForecastServiceImpl implements ForecastService {
 				String[] primarySwellDirectionString = forecastRowColumnValue.text().split("-");
 				
 				if (primarySwellDirectionString.length > 0) {
-					forecastItem.setWindSwellDirection(Integer.parseInt(primarySwellDirectionString[0]));
+					forecastItem.setPrimarySwellDirection(Integer.parseInt(primarySwellDirectionString[0]));
 					
 					if (primarySwellDirectionString.length > 1) {
-						forecastItem.setWindSwellDirectionComponent(primarySwellDirectionString[1]);
+						forecastItem.setPrimarySwellDirectionComponent(primarySwellDirectionString[1]);
 					}
 				}
+			} else if (index == 12) {
+				// Mar primario periodo: 4.17
+				forecastItem.setPrimarySwellPeriod(Float.parseFloat(forecastRowColumnValue.text().equals("") ? "0" : forecastRowColumnValue.text()));
 			} else if (index == 13) {
 				// Mar secundario
 				Float secondarySwell = Float.parseFloat(forecastRowColumnValue.text().equals("") ? "0" : forecastRowColumnValue.text());
 				forecastItem.setSecondarySwellHeight(secondarySwell);
 			} else if (index == 14) {
-				// Mar primario dirección: 180-S
+				// Mar secundario dirección: 180-S
 				String[] secondarySwellDirectionString = forecastRowColumnValue.text().split("-");
 				
 				if (secondarySwellDirectionString.length > 0) {
