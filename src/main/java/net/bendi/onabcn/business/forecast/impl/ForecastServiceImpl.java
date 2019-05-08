@@ -1,13 +1,15 @@
 package net.bendi.onabcn.business.forecast.impl;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -105,24 +107,25 @@ public class ForecastServiceImpl implements ForecastService {
 	
 	private Forecast parseForecastRowColumnValues(Elements forecastRowColumnValues) {
 		
-		Forecast forecastItem = new Forecast();
+		ZoneId zoneId = ZoneId.of("Europe/Madrid");
 		
+		Forecast forecastItem = new Forecast();
 		Date lastUpdate = new Date();
 		
 		int index = 0;
-
 		for (Element forecastRowColumnValue : forecastRowColumnValues) {
 
 			if (index == 0) {
 				// Fecha: 2018-09-11 13:00:00
-				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				Date date;
-				try {
-					date = formatter.parse(forecastRowColumnValue.text());
-					forecastItem.setDate(date);
-				} catch (ParseException e) {
-					logger.error(e);
-				}
+				Instant instant = LocalDateTime
+					.parse(
+						forecastRowColumnValue.text(), 
+						DateTimeFormatter.ofPattern( "yyyy-MM-dd HH:mm:ss"))
+					.atZone(zoneId)
+					.toInstant();
+				
+				forecastItem.setDate(Date.from(instant));
+				
 			} else if (index == 2) {
 				// Velocidad viento: 9.22
 				Float windSpeed = new Float(forecastRowColumnValue.text());
