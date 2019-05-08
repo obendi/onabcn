@@ -47,8 +47,7 @@ public class ForecastServiceImpl implements ForecastService {
 		ForecastTransformer forecastTransformer = new ForecastTransformer();
 		
 		Instant instant = date.toInstant();
-		ZoneId zoneId = ZoneId.systemDefault();
-		ZonedDateTime zdt = ZonedDateTime.ofInstant(instant, zoneId).toLocalDate().atStartOfDay(zoneId);
+		ZonedDateTime zdt = ZonedDateTime.ofInstant(instant, zoneId).toLocalDate().atStartOfDay(ZoneId.systemDefault());
 		
 		Forecast forecast = forecastRepository.getByDate(Date.from(zdt.plusHours(6).toInstant()));
 		result.add(forecastTransformer.transform(forecast));
