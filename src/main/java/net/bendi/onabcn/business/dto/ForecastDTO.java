@@ -27,6 +27,7 @@ public class ForecastDTO {
 	private Float windSpeed;
 	private Integer windDirection;
 	private String windDirectionComponent;
+	
 	public Date getDate() {
 		return date;
 	}

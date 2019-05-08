@@ -1,6 +1,5 @@
 package net.bendi.onabcn.business.forecast.impl;
 
-import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -9,7 +8,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,6 +28,9 @@ import net.bendi.onabcn.service.puertos.PuertosClient;
 public class ForecastServiceImpl implements ForecastService {
 	
 	private static final Logger logger = LogManager.getLogger(ForecastServiceImpl.class);
+	
+	private static final ZoneId zoneId = ZoneId.of("Europe/Madrid");
+	private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 	
 	private ForecastRepository forecastRepository;
 	private PuertosClient puertosClient;
@@ -107,8 +108,6 @@ public class ForecastServiceImpl implements ForecastService {
 	
 	private Forecast parseForecastRowColumnValues(Elements forecastRowColumnValues) {
 		
-		ZoneId zoneId = ZoneId.of("Europe/Madrid");
-		
 		Forecast forecastItem = new Forecast();
 		Date lastUpdate = new Date();
 		
@@ -117,12 +116,10 @@ public class ForecastServiceImpl implements ForecastService {
 
 			if (index == 0) {
 				// Fecha: 2018-09-11 13:00:00
-				Instant instant = LocalDateTime
-					.parse(
-						forecastRowColumnValue.text(), 
-						DateTimeFormatter.ofPattern( "yyyy-MM-dd HH:mm:ss"))
-					.atZone(zoneId)
-					.toInstant();
+				Instant instant = 
+					LocalDateTime.parse(forecastRowColumnValue.text(), dateTimeFormatter)
+						.atZone(zoneId)
+						.toInstant();
 				
 				forecastItem.setDate(Date.from(instant));
 				
