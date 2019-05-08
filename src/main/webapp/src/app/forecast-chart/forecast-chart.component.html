@@ -25,6 +25,7 @@
   </div>
 </div>
 
+
 <div id="forecast-resume" class="row no-gutters">
   <div class="col-sm-12 forecast-item" *ngFor="let item of data">
     <div class="row align-items-center no-gutters">
@@ -54,4 +55,40 @@
         </div>
     </div>
   </div>
+</div>
+
+<div class="row">
+    <table class="table table-hover table-dark table-striped text-center">
+        <thead>
+          <tr>
+            <th scope="col">Hour</th>
+            <th scope="col">Primary swell</th>
+            <th scope="col">Period</th>
+            <th scope="col">Swell direction</th>
+            <th scope="col">Wind speed</th>
+            <th scope="col">Wind direction</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of data">
+                <th scope="row" class="align-middle">{{item.date | date:'HH:mm'}}</th>
+                <td class="align-middle">{{item.primarySwell}} m</td>
+                <td class="align-middle">{{item.primarySwellPeriod}} s</td>
+                <td class="align-middle">
+                    <svg width="100" height="100" viewBox="0 0 50 50" [ngStyle]="{'transform':'rotate(' + flipDirection(item.primarySwellDirection) + 'deg)'}">
+                      <polygon points="25,6 15,40, 25,35, 35,40" style="fill:rgba(0,105,148,1)" />
+                    </svg>
+                    <span style="display:block">{{item.primarySwellDirectionComponent}}</span>
+                  
+                </td>
+                <td class="align-middle">{{item.windSpeed}} m/s</td>
+                <td class="align-middle">
+                  <svg width="100" height="100" viewBox="0 0 50 50" [ngStyle]="{'transform':'rotate(' + flipDirection(item.windDirection) + 'deg)'}">
+                    <polygon points="25,6 15,40, 25,35, 35,40" [ngClass]="getWindSpeedColorClass(item.windSpeed)" />
+                  </svg>
+                  <span style="display:block">{{item.windDirectionComponent}}</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
