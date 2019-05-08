@@ -7,8 +7,14 @@
     margin:25px 0;
 }
 
+
+/* @include media-breakpoint-up(sm) {
+    .custom-class {
+        font-size: 1.4em;
+    }
+} */
+
 .forecast-item {
-    font-size: 0.7em;
     text-align: center;
 }
 
@@ -16,7 +22,7 @@
     background-color: rgba(0,105,148,0.05);
 }
 
-.forecast-item-date span {
+span.forecast-item-date {
     display: block;
     color: #fff;
     font-weight: bold;
