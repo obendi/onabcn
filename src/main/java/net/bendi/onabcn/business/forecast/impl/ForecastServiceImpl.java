@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -46,8 +47,11 @@ public class ForecastServiceImpl implements ForecastService {
 		
 		ForecastTransformer forecastTransformer = new ForecastTransformer();
 		
+		logger.info("System Default ZoneId: {}", ZoneId.systemDefault().toString());
+		logger.info("Date: {}", date);
+		
 		Instant instant = date.toInstant();
-		ZonedDateTime zdt = ZonedDateTime.ofInstant(instant, zoneId).toLocalDate().atStartOfDay(ZoneId.systemDefault());
+		ZonedDateTime zdt = ZonedDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate().atStartOfDay(ZoneId.systemDefault());
 		
 		Forecast forecast = forecastRepository.getByDate(Date.from(zdt.plusHours(6).toInstant()));
 		result.add(forecastTransformer.transform(forecast));
