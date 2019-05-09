@@ -53,7 +53,7 @@ public class ForecastServiceImpl implements ForecastService {
 		ZonedDateTime zdt = ZonedDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate().atStartOfDay(ZoneId.systemDefault());
 		
 		logger.info("Getting forecast from {}", Date.from(zdt.plusHours(4).toInstant()));
-		Forecast forecast = forecastRepository.getByDate(Date.from(zdt.plusHours(6).toInstant()));
+		Forecast forecast = forecastRepository.getByDate(Date.from(zdt.plusHours(4).toInstant()));
 		result.add(forecastTransformer.transform(forecast));
 		logger.info("Get forecast from {}", forecast.getDate());
 		
