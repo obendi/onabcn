@@ -27,7 +27,7 @@ export class ForecastChartComponent implements OnInit {
   dateFrom = new FormControl(new Date());
   dateTo = new FormControl(new Date());
 
-  private datePipe:DatePipe = new DatePipe('en-US');
+  private datePipe:DatePipe = new DatePipe('es');
 
   today:Date = new Date();
   tomorrow:Date = new Date();
@@ -102,7 +102,7 @@ export class ForecastChartComponent implements OnInit {
   public getForecast(date:Date):void {
       this
         .forecastService
-        .getForecastResume(date)
+        .getForecast(date)
         .subscribe((data: Forecast[]) => {
 
           let _lineChartLabels:Array<any> = [];

@@ -1,6 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+import localeCa from '@angular/common/locales/ca';
+
+registerLocaleData(localeEs, 'es');
+registerLocaleData(localeCa, 'ca');
 
 import { AppComponent } from './app.component';
 import { ForecastChartComponent } from './forecast-chart/forecast-chart.component';
@@ -11,7 +18,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { CurrentTimeComponent } from './current-time/current-time.component';
 import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -24,12 +30,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    ChartsModule,
-    NgbModule
+    ChartsModule
   ],
   providers: [
     ForecastService, 
-    DatePipe],
+    DatePipe,
+    {provide: LOCALE_ID, useValue: "en"}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

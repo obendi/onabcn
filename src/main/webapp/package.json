@@ -7,7 +7,11 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build-locale:en": "ng build --prod --i18n-locale en --i18n-format xlf --i18n-file src/translate/messages.en.xlf --output-path=../resources/static/en --baseHref /en/",
+    "build-locale:es": "ng build --prod --i18n-locale es --i18n-format xlf --i18n-file src/translate/messages.es.xlf --output-path=../resources/static/es --baseHref /es/",
+    "build-locale:ca": " ng build --prod --i18n-locale ca --i18n-format xlf --i18n-file src/translate/messages.ca.xlf --output-path=../resources/static/ca --baseHref /ca/",
+    "build-locale": "npm run build-locale:en && npm run build-locale:es && npm run build-locale:ca"
   },
   "private": true,
   "dependencies": {

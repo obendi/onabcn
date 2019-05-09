@@ -5,6 +5,12 @@
         </div>
     </div>
 
+    <ng-container *ngFor="let language of languageList">
+        <a href="/{{language.code}}/index.html">
+            <button class="button">{{language.label}}</button>
+        </a>
+    </ng-container>
+
     <!-- <div class="row">
         <div class="col-12">
             <app-current-time></app-current-time>
@@ -17,4 +23,3 @@
         </div>
     </div>
 </div>
-        
