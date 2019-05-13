@@ -55,28 +55,22 @@ public class ForecastServiceImpl implements ForecastService {
 		Forecast forecast = forecastRepository.getByDate(Date.from(zdt.plusHours(4).toInstant()));
 		result.add(forecastTransformer.transform(forecast));
 		
-		forecast = forecastRepository.getByDate(Date.from(zdt.plusHours(6).toInstant()));
-		result.add(forecastTransformer.transform(forecast));
-		
-		forecast = forecastRepository.getByDate(Date.from(zdt.plusHours(8).toInstant()));
+		forecast = forecastRepository.getByDate(Date.from(zdt.plusHours(7).toInstant()));
 		result.add(forecastTransformer.transform(forecast));
 		
 		forecast = forecastRepository.getByDate(Date.from(zdt.plusHours(10).toInstant()));
 		result.add(forecastTransformer.transform(forecast));
 		
-		forecast = forecastRepository.getByDate(Date.from(zdt.plusHours(12).toInstant()));
+		forecast = forecastRepository.getByDate(Date.from(zdt.plusHours(13).toInstant()));
 		result.add(forecastTransformer.transform(forecast));
 		
-		forecast = forecastRepository.getByDate(Date.from(zdt.plusHours(14).toInstant()));
-		result.add(forecastTransformer.transform(forecast));
-		
-		forecast = forecastRepository.getByDate(Date.from(zdt.plusHours(16).toInstant()));
+		forecast = forecastRepository.getByDate(Date.from(zdt.plusHours(15).toInstant()));
 		result.add(forecastTransformer.transform(forecast));
 		
 		forecast = forecastRepository.getByDate(Date.from(zdt.plusHours(18).toInstant()));
 		result.add(forecastTransformer.transform(forecast));
 		
-		forecast = forecastRepository.getByDate(Date.from(zdt.plusHours(20).toInstant()));
+		forecast = forecastRepository.getByDate(Date.from(zdt.plusHours(21).toInstant()));
 		result.add(forecastTransformer.transform(forecast));
 		
 		return result;
