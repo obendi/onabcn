@@ -30,10 +30,10 @@
   <div class="col-sm-12 forecast-item" *ngFor="let item of data">
     <div class="row align-items-center no-gutters">
       <div class="col">
-          <span>{{item.date | date:'HH:mm'}}</span>
+          <span><strong>{{item.date | date:'HH:mm'}}</strong></span>
         </div>
       <div class="col">
-        <span class="align-bottom"><strong>{{item.primarySwell}} m</strong></span>
+        <span class="align-bottom">{{item.primarySwell}} m</span>
       </div>
       <div class="col">
           <span class="align-bottom">{{item.primarySwellPeriod}} s</span>
