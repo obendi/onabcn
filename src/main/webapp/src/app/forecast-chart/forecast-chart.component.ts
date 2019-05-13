@@ -102,7 +102,7 @@ export class ForecastChartComponent implements OnInit {
   public getForecast(date:Date):void {
       this
         .forecastService
-        .getForecast(date)
+        .getForecastResume(date)
         .subscribe((data: Forecast[]) => {
 
           let _lineChartLabels:Array<any> = [];
