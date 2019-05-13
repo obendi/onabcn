@@ -30,28 +30,28 @@
   <div class="col-sm-12 forecast-item" *ngFor="let item of data">
     <div class="row align-items-center no-gutters">
       <div class="col">
-          <span><strong>{{item.date | date:'HH:mm'}}</strong></span>
+          <span class="forecast-item-date text-secondary font-weight-bold">{{item.date | date:'HH:mm'}}</span>
         </div>
       <div class="col">
-        <span class="align-bottom">{{item.primarySwell}} m</span>
+        <span class="text-primary font-weight-bold">{{item.primarySwell}} m</span>
       </div>
       <div class="col">
-          <span class="align-bottom">{{item.primarySwellPeriod}} s</span>
+          <span class="text-secondary">{{item.primarySwellPeriod}} s</span>
         </div>
       <div class="col">
         <svg viewBox="0 0 50 50" [ngStyle]="{'transform':'rotate(' + flipDirection(item.primarySwellDirection) + 'deg)'}">
           <polygon points="25,6 15,40, 25,35, 35,40" style="fill:rgba(0,105,148,1)" />
         </svg>
-        <span>{{item.primarySwellDirectionComponent}}</span>
+        <span class="text-secondary">{{item.primarySwellDirectionComponent}}</span>
       </div>
       <div class="col">
-        <span>{{item.windSpeed}} m/s</span>
+        <span class="text-secondary">{{item.windSpeed}} m/s</span>
       </div>
       <div class="col">
           <svg viewBox="0 0 50 50" [ngStyle]="{'transform':'rotate(' + flipDirection(item.windDirection) + 'deg)'}">
             <polygon points="25,6 15,40, 25,35, 35,40" [ngClass]="getWindSpeedColorClass(item.windSpeed)" />
           </svg>
-          <span>{{item.windDirectionComponent}}</span>
+          <span class="text-secondary">{{item.windDirectionComponent}}</span>
         </div>
     </div>
   </div>
