@@ -35,8 +35,8 @@ export class ForecastChartComponent implements OnInit {
 
   // lineChart
   public lineChartData:Array<any> = [
-    {data: [], label: 'Mar total'},
-    {data: [], label: 'Mar primario'}
+    {data: [], label: 'Mar primario'},
+    {data: [], label: 'Mar total'}
   ];
   public lineChartLabels:Array<any> = [];
   public lineChartOptions:any = {
