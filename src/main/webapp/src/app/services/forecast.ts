@@ -1,26 +1,26 @@
 export class Forecast {
     date: Date;
 
-    totalHeight: Number;
-    totalDirection: Number;
+    totalHeight: number;
+    totalDirection: number;
     totalDirectionComponent: String;
-    totalPeriod: Number;
+    totalPeriod: number;
 
-    windSwell: Number;
-    windSwellDirection: Number;
-    windSwellDirectionComponent: Number;
+    windSwell: number;
+    windSwellDirection: number;
+    windSwellDirectionComponent: number;
 
-    primarySwell: Number;
-    primarySwellDirection: Number;
+    primarySwell: number;
+    primarySwellDirection: number;
     primarySwellDirectionComponent: String;
-    primarySwellPeriod: Number;
+    primarySwellPeriod: number;
 
-    secondarySwell: Number;
-    secondarySwellDirection: Number;
+    secondarySwell: number;
+    secondarySwellDirection: number;
     secondarySwellDirectionComponent: String;
-    secondarySwellPeriod: Number;
+    secondarySwellPeriod: number;
 
-    windSpeed: Number;
-    windDirection: Number;
+    windSpeed: number;
+    windDirection: number;
     windDirectionComponent: String;
 }

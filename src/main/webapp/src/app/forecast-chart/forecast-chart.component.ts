@@ -129,6 +129,31 @@ export class ForecastChartComponent implements OnInit {
       });
   }
 
+  public isGoodCondition(forecast:Forecast):boolean {
+    if (forecast.primarySwell > 0.6 && this.isOffShoreWind(forecast)) {
+      return true;
+    }
+    return false;
+  }
+
+  public isOffShoreWind(forecast:Forecast):boolean {
+
+    let aux;
+
+    if (forecast.primarySwellDirection<180) {
+      aux = forecast.primarySwellDirection+180;
+    }
+    else {
+      aux = forecast.primarySwellDirection-180;
+    }
+
+    if (forecast.windDirection - aux > -45 || forecast.windDirection < 45) {
+      return true;
+    }
+
+    return false;
+  }
+  
   public flipDirection(direction:number):number {
     if (direction<180) {
       return direction+180;
