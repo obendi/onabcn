@@ -79,9 +79,6 @@ public class ForecastServiceImpl implements ForecastService {
 		forecast = forecastRepository.getByDate(Date.from(zdt.plusHours(20).toInstant()));
 		result.add(forecastTransformer.transform(forecast));
 		
-		forecast = forecastRepository.getByDate(Date.from(zdt.plusHours(22).toInstant()));
-		result.add(forecastTransformer.transform(forecast));
-		
 		return result;
 	}
 
