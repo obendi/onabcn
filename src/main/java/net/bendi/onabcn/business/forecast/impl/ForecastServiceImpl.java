@@ -47,7 +47,7 @@ public class ForecastServiceImpl implements ForecastService {
 		
 		List<ForecastDTO> result = new ArrayList<>();
 		
-		ForecastTransformer forecastTransformer = new ForecastTransformer(0.6f, 315);
+		ForecastTransformer forecastTransformer = new ForecastTransformer(0.65f, 315);
 		
 		Instant instant = date.toInstant();
 		ZonedDateTime zdt = ZonedDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate().atStartOfDay(ZoneId.systemDefault());
@@ -77,7 +77,7 @@ public class ForecastServiceImpl implements ForecastService {
 	public List<ForecastDTO> getForecast(Date dateStart, Date dateEnd) {
 
 		List<ForecastDTO> result = new ArrayList<>();
-		ForecastTransformer forecastTransformer = new ForecastTransformer(0.6f, 315);
+		ForecastTransformer forecastTransformer = new ForecastTransformer(0.65f, 315);
 
 		List<Forecast> forecastList=null;
 		if (dateStart == null || dateEnd == null) {

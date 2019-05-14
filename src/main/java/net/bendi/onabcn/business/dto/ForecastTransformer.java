@@ -49,8 +49,14 @@ public class ForecastTransformer implements Transformer<Forecast, ForecastDTO> {
 	}
 	
 	private boolean isGoodCondition(Forecast forecast) {
+			
+		float isOffshore = this.offshoreDirection - forecast.getWindDirection();
 		
-		if (swellTreshold <= forecast.getPrimarySwellHeight()) {
+		if (isOffshore < 0) {
+			isOffshore = isOffshore*-1;
+		}
+		
+		if (isOffshore <= 90 && forecast.getPrimarySwellHeight() >= this.swellTreshold) {
 			return true;
 		}
 		
