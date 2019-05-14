@@ -46,7 +46,7 @@
         <span class="text-secondary unit">{{item.primarySwellDirectionComponent}}</span>
       </div>
       <div class="col">
-        <span class="text-secondary">{{item.windSpeed | number: '1.1-1'}}</span><span class="text-secondary unit">m/s</span>
+        <span class="text-secondary">{{item.windSpeed | number: '1.0-0'}}</span><span class="text-secondary unit">m/s</span>
       </div>
       <div class="col">
           <svg viewBox="0 0 50 50" [ngStyle]="{'transform':'rotate(' + flipDirection(item.windDirection) + 'deg)'}">
