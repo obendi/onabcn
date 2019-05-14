@@ -34,25 +34,25 @@
           <span *ngIf="item.isGoodCondition" class="glyphicon glyphicon-star-empty"></span>
         </div>
       <div class="col">
-        <span class="text-primary font-weight-bold">{{item.primarySwell | number: '1.1-1'}} m</span>
+        <span class="text-primary font-weight-bold">{{item.primarySwell | number: '1.1-1'}}</span><span class="text-primary unit">m</span>
       </div>
       <div class="col">
-          <span class="text-secondary">{{item.primarySwellPeriod | number: '1.1-1'}} s</span>
+          <span class="text-secondary">{{item.primarySwellPeriod | number: '1.0-0'}}</span><span class="text-secondary unit">s</span>
         </div>
       <div class="col">
         <svg viewBox="0 0 50 50" [ngStyle]="{'transform':'rotate(' + flipDirection(item.primarySwellDirection) + 'deg)'}">
           <polygon points="25,6 15,40, 25,35, 35,40" style="fill:rgba(0,105,148,1)" />
         </svg>
-        <span class="text-secondary">{{item.primarySwellDirectionComponent}}</span>
+        <span class="text-secondary unit">{{item.primarySwellDirectionComponent}}</span>
       </div>
       <div class="col">
-        <span class="text-secondary">{{item.windSpeed | number: '1.1-1'}} m/s</span>
+        <span class="text-secondary">{{item.windSpeed | number: '1.1-1'}}</span><span class="text-secondary unit">m/s</span>
       </div>
       <div class="col">
           <svg viewBox="0 0 50 50" [ngStyle]="{'transform':'rotate(' + flipDirection(item.windDirection) + 'deg)'}">
             <polygon points="25,6 15,40, 25,35, 35,40" [ngClass]="getWindSpeedColorClass(item.windSpeed)" />
           </svg>
-          <span class="text-secondary">{{item.windDirectionComponent}}</span>
+          <span class="text-secondary unit">{{item.windDirectionComponent}}</span>
         </div>
     </div>
   </div>
