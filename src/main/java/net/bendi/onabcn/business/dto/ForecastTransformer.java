@@ -3,6 +3,14 @@ package net.bendi.onabcn.business.dto;
 import net.bendi.onabcn.domain.Forecast;
 
 public class ForecastTransformer implements Transformer<Forecast, ForecastDTO> {
+	
+	private Float swellTreshold;
+	private Integer offshoreDirection;
+	
+	public ForecastTransformer(Float swellTreshold, Integer offshoreDirection) {
+		this.swellTreshold = swellTreshold;
+		this.offshoreDirection = offshoreDirection;
+	}
 
 	@Override
 	public ForecastDTO transform(Forecast forecast) {
@@ -33,8 +41,19 @@ public class ForecastTransformer implements Transformer<Forecast, ForecastDTO> {
 			forecastDTO.setWindSpeed(forecast.getWindSpeed());
 			forecastDTO.setWindDirection(forecast.getWindDirection());
 			forecastDTO.setWindDirectionComponent(forecast.getWindDirectionComponent());
+			
+			forecastDTO.setIsGoodCondition(isGoodCondition(forecast));
 		}
 		
 		return forecastDTO;
+	}
+	
+	private boolean isGoodCondition(Forecast forecast) {
+		
+		if (swellTreshold <= forecast.getPrimarySwellHeight()) {
+			return true;
+		}
+		
+		return false;
 	}
 }

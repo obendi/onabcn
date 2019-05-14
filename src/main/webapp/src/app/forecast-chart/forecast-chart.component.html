@@ -28,16 +28,16 @@
 
 <div id="forecast-resume" class="row no-gutters">
   <div class="col-sm-12 forecast-item" *ngFor="let item of data">
-    <div class="row align-items-center no-gutters" [ngClass]="{'green-good-condition': isGoodCondition(item)}">
+    <div class="row align-items-center no-gutters" [ngClass]="{'green-good-condition': item.isGoodCondition}">
       <div class="col">
           <span class="forecast-item-date text-secondary font-weight-bold">{{item.date | date:'HH:mm'}}</span>
-          <span *ngIf="isGoodCondition(item)" class="glyphicon glyphicon-star-empty"></span>
+          <span *ngIf="item.isGoodCondition" class="glyphicon glyphicon-star-empty"></span>
         </div>
       <div class="col">
-        <span class="text-primary font-weight-bold">{{item.primarySwell}} m</span>
+        <span class="text-primary font-weight-bold">{{item.primarySwell | number: '1.1-1'}} m</span>
       </div>
       <div class="col">
-          <span class="text-secondary">{{item.primarySwellPeriod}} s</span>
+          <span class="text-secondary">{{item.primarySwellPeriod | number: '1.1-1'}} s</span>
         </div>
       <div class="col">
         <svg viewBox="0 0 50 50" [ngStyle]="{'transform':'rotate(' + flipDirection(item.primarySwellDirection) + 'deg)'}">
@@ -46,7 +46,7 @@
         <span class="text-secondary">{{item.primarySwellDirectionComponent}}</span>
       </div>
       <div class="col">
-        <span class="text-secondary">{{item.windSpeed}} m/s</span>
+        <span class="text-secondary">{{item.windSpeed | number: '1.1-1'}} m/s</span>
       </div>
       <div class="col">
           <svg viewBox="0 0 50 50" [ngStyle]="{'transform':'rotate(' + flipDirection(item.windDirection) + 'deg)'}">

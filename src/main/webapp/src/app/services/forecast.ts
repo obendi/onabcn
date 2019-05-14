@@ -23,4 +23,6 @@ export class Forecast {
     windSpeed: number;
     windDirection: number;
     windDirectionComponent: String;
+
+    isGoodCondition: boolean;
 }

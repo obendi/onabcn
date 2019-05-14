@@ -28,6 +28,8 @@ public class ForecastDTO {
 	private Integer windDirection;
 	private String windDirectionComponent;
 	
+	private boolean isGoodCondition;
+	
 	public Date getDate() {
 		return date;
 	}
@@ -141,5 +143,11 @@ public class ForecastDTO {
 	}
 	public void setWindDirectionComponent(String windDirectionComponent) {
 		this.windDirectionComponent = windDirectionComponent;
+	}
+	public boolean getIsGoodCondition() {
+		return isGoodCondition;
+	}
+	public void setIsGoodCondition(boolean isGoodCondition) {
+		this.isGoodCondition = isGoodCondition;
 	}
 }
