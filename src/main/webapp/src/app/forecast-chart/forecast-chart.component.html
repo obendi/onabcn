@@ -37,7 +37,7 @@
         <span class="text-primary font-weight-bold">{{item.primarySwell | number: '1.1-1'}}</span><span class="text-primary unit">m</span>
       </div>
       <div class="col">
-          <span class="text-secondary">{{item.primarySwellPeriod | number: '1.0-0'}}</span><span class="text-secondary unit">s</span>
+          <span class="text-secondary font-weight-bold">{{item.primarySwellPeriod | number: '1.0-0'}}</span><span class="text-secondary unit">s</span>
         </div>
       <div class="col">
         <svg viewBox="0 0 50 50" [ngStyle]="{'transform':'rotate(' + flipDirection(item.primarySwellDirection) + 'deg)'}">
@@ -46,7 +46,7 @@
         <span class="text-secondary unit">{{item.primarySwellDirectionComponent}}</span>
       </div>
       <div class="col">
-        <span class="text-secondary">{{item.windSpeed | number: '1.0-0'}}</span><span class="text-secondary unit">m/s</span>
+        <span class="text-secondary font-weight-bold">{{item.windSpeed | number: '1.0-0'}}</span><span class="text-secondary unit">m/s</span>
       </div>
       <div class="col">
           <svg viewBox="0 0 50 50" [ngStyle]="{'transform':'rotate(' + flipDirection(item.windDirection) + 'deg)'}">
